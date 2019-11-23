@@ -1,50 +1,51 @@
-import mockStudents from '../../api/students'
-import { ADD_STUDENT } from './Student.actions'
+//import mockStudents from '../../api/students'
+import { ADD_STUDENT, EDIT_STUDENT } from './Student.actions'
+import uuid from 'uuid/v1'
 
-// const initialState = [
-//   {
-//     id: 1,
-//     name: 'Ekaterina Tankova',
-//     address: {
-//       country: 'USA',
-//       state: 'West Virginia',
-//       city: 'Parkersburg',
-//       street: '2849 Fulton Street'
-//     },
-//     email: 'ekaterina.tankova@devias.io',
-//     phone: '304-428-3097',
-//     avatarUrl: '/images/avatars/avatar_3.png',
-//     createdAt: 1555016400000
-//   },
-//   {
-//     id: 2,
-//     name: 'Cao Yu',
-//     address: {
-//       country: 'USA',
-//       state: 'Bristow',
-//       city: 'Iowa',
-//       street: '1865  Pleasant Hill Road'
-//     },
-//     email: 'cao.yu@devias.io',
-//     avatarUrl: '/images/avatars/avatar_4.png',
-//     phone: '712-351-5711',
-//     createdAt: 1555016400000
-//   }
-// ]
+const students = [
+  { id: uuid(), name: 'Ekaterina Tankova', email: 'ekaterina.tankova@devias.io', phone: '304-428-3097', createdAt: 1555016400000 },
+  { id: uuid(), name: 'Ekaterina Tankova', email: 'ekaterina.tankova@devias.io', phone: '304-428-3097', createdAt: 1555016400000 },
+  { id: uuid(), name: 'Ekaterina Tankova', email: 'ekaterina.tankova@devias.io', phone: '304-428-3097', createdAt: 1555016400000 },
+  { id: uuid(), name: 'Ekaterina Tankova', email: 'ekaterina.tankova@devias.io', phone: '304-428-3097', createdAt: 1555016400000 },
+  { id: uuid(), name: 'Ekaterina Tankova', email: 'ekaterina.tankova@devias.io', phone: '304-428-3097', createdAt: 1555016400000 },
+  { id: uuid(), name: 'Ekaterina Tankova', email: 'ekaterina.tankova@devias.io', phone: '304-428-3097', createdAt: 1555016400000 },
+  { id: uuid(), name: 'Ekaterina Tankova', email: 'ekaterina.tankova@devias.io', phone: '304-428-3097', createdAt: 1555016400000 },
+]
 
-const initialState = mockStudents
 
-function studentReducer(state = initialState, action) {
+// const initialState = {
+//   collection: [
+//     { id: 'item-1', name: 'item 1', description: 'description 1' },
+//     { id: 'item-2', name: 'item 2', description: 'description 2' },
+//     { id: 'item-3', name: 'item 3', description: 'description 3' }
+//   ]
+// }
+
+function studentReducer(state = students, action) {
 
   switch (action.type) {
 
-    case ADD_STUDENT:
+    case ADD_STUDENT: {
       return [
         ...state,
         action.payload.student
       ]
-    default:
+    }
+    case EDIT_STUDENT: {
+      return {
+        ...state,
+        students: state.map(student => {
+          if (student.id === action.payload.id) {
+            return action.payload
+          }
+
+          return student
+        })
+      }
+    }
+    default: {
       return state
+    }
   }
 }
 

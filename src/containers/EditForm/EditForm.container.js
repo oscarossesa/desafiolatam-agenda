@@ -17,8 +17,7 @@ function EditForm(props) {
   const handleOnSubmit = event => {
     event.preventDefault()
 
-    console.log(nameValue, emailValue, phoneValue)
-    props.dispatch(onEditStudent({ name: nameValue, email: emailValue, phone: phoneValue }))
+    props.dispatch(onEditStudent({ id: idValue, name: nameValue, email: emailValue, phone: phoneValue }))
   }
 
   const handleOnChangeName = event => {
@@ -35,10 +34,6 @@ function EditForm(props) {
 
   useEffect(() => {
     const { selectedItem } = props
-
-    console.log('props --> ', props)
-    console.log(selectedItem);
-
 
     if (!selectedItem) {
       return
@@ -68,18 +63,14 @@ function EditForm(props) {
 }
 
 function mapStateToProps(state) {
-  console.log('Edit form', state);
 
+  console.log('el log ss --> ', state);
   const show = state.editForm.show
   const selectedItemID = state.editForm.selectedItemID
-  const { students } = state
-  const selectedItem = students.find(item => item.id === selectedItemID)
-
+  const selectedItem = state.students.find(item => item.id === selectedItemID)
 
   return {
     show,
-    selectedItemID,
-    students,
     selectedItem
   }
 }
