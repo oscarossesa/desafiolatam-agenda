@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { onHideEditForm } from './EditForm.actions'
+// import { onHideEditForm } from './EditForm.actions'
 import { onEditStudent } from '../Students/Student.actions'
 
 function EditForm(props) {
@@ -10,9 +10,9 @@ function EditForm(props) {
   const [emailValue, setEmailValue] = useState('')
   const [phoneValue, setPhoneValue] = useState('')
 
-  const handleOnClick = () => {
-    props.dispatch(onHideEditForm())
-  }
+  // const handleOnClick = () => {
+  //   props.dispatch(onHideEditForm())
+  // }
 
   const handleOnSubmit = event => {
     event.preventDefault()
@@ -64,10 +64,10 @@ function EditForm(props) {
 
 function mapStateToProps(state) {
 
-  console.log('el log ss --> ', state);
   const show = state.editForm.show
   const selectedItemID = state.editForm.selectedItemID
-  const selectedItem = state.students.find(item => item.id === selectedItemID)
+  const list = state.student.list
+  const selectedItem = list.find(item => item.id === selectedItemID)
 
   return {
     show,

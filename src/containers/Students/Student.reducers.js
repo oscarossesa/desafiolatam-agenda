@@ -1,46 +1,41 @@
-//import mockStudents from '../../api/students'
-import { ADD_STUDENT, EDIT_STUDENT } from './Student.actions'
+import { ADD_STUDENT, EDIT_STUDENT, DELETE_STUDENT } from './Student.actions'
 import uuid from 'uuid/v1'
 
-const students = [
-  { id: uuid(), name: 'Ekaterina Tankova', email: 'ekaterina.tankova@devias.io', phone: '304-428-3097', createdAt: 1555016400000 },
-  { id: uuid(), name: 'Ekaterina Tankova', email: 'ekaterina.tankova@devias.io', phone: '304-428-3097', createdAt: 1555016400000 },
-  { id: uuid(), name: 'Ekaterina Tankova', email: 'ekaterina.tankova@devias.io', phone: '304-428-3097', createdAt: 1555016400000 },
-  { id: uuid(), name: 'Ekaterina Tankova', email: 'ekaterina.tankova@devias.io', phone: '304-428-3097', createdAt: 1555016400000 },
-  { id: uuid(), name: 'Ekaterina Tankova', email: 'ekaterina.tankova@devias.io', phone: '304-428-3097', createdAt: 1555016400000 },
-  { id: uuid(), name: 'Ekaterina Tankova', email: 'ekaterina.tankova@devias.io', phone: '304-428-3097', createdAt: 1555016400000 },
-  { id: uuid(), name: 'Ekaterina Tankova', email: 'ekaterina.tankova@devias.io', phone: '304-428-3097', createdAt: 1555016400000 },
-]
+const initialState = {
+  list: [
+    { id: uuid(), name: 'Ekaterina Tankova A', email: 'ekaterina.tankova@devias.io', phone: '304-428-3097' },
+    { id: uuid(), name: 'Ekaterina Tankova B', email: 'ekaterina.tankova@devias.io', phone: '304-428-3097' },
+  ]
+}
 
-
-// const initialState = {
-//   collection: [
-//     { id: 'item-1', name: 'item 1', description: 'description 1' },
-//     { id: 'item-2', name: 'item 2', description: 'description 2' },
-//     { id: 'item-3', name: 'item 3', description: 'description 3' }
-//   ]
-// }
-
-function studentReducer(state = students, action) {
-
+function studentReducer(state = initialState, action) {
   switch (action.type) {
-
     case ADD_STUDENT: {
-      return [
+      return {
         ...state,
-        action.payload.student
-      ]
+        list: state.list.concat(action.payload.student)
+      }
     }
     case EDIT_STUDENT: {
       return {
         ...state,
-        students: state.map(student => {
-          if (student.id === action.payload.id) {
+        list: state.list.map(item => {
+          if (item.id === action.payload.id) {
             return action.payload
           }
 
-          return student
+          return item
         })
+      }
+    }
+    case DELETE_STUDENT: {
+      console.log('DELETE_STUDENT state', state);
+      console.log('DELETE_STUDENT action', action);
+      
+      return {
+        ...state,
+        list: state.list.filter(item => item.id !== action.payload.itemID)
+        
       }
     }
     default: {

@@ -1,10 +1,10 @@
 import { createStore, combineReducers } from 'redux'
-import studentsReducer from '../containers/Students/Student.reducers'
+import studentReducer from '../containers/Students/Student.reducers'
 import addFormReducer from '../containers/AddForm/AddForm.reducer'
 import editFormReducer from '../containers/EditForm/EditForm.reducer'
 
 const reducer = combineReducers({
-  students: studentsReducer,
+  student: studentReducer,
   addForm: addFormReducer,
   editForm: editFormReducer
 })

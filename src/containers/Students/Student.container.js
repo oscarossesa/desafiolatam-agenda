@@ -10,14 +10,13 @@ import TableHeadCell from '../../components/common/table/TableHeadCell'
 import TableRow from '../../components/common/table/TableRow'
 import { onShowAddForm } from '../AddForm/AddForm.actions'
 import { onShowEditForm } from '../EditForm/EditForm.actions'
+import { onDeleteStudent} from './Student.actions'
 import '../../App.css'
 
 const StudentContainer = props => {
 
   const {
     students,
-    handleDeleteStudent,
-    handleOrderBy,
     showForm
   } = props
 
@@ -29,6 +28,14 @@ const StudentContainer = props => {
     event.stopPropagation()
 
     props.dispatch(onShowEditForm({ itemID }))
+    //props.dispatch()
+  }
+
+  const handleOnClickDelete = (itemID) => (event) => {
+    console.log(props);
+    
+    props.dispatch(onDeleteStudent({ itemID }))
+  
   }
 
   return (
@@ -40,10 +47,10 @@ const StudentContainer = props => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableHeadCell onClick={handleOrderBy}>Nombre</TableHeadCell>
-            <TableHeadCell onClick={handleOrderBy}>Correo</TableHeadCell>
-            <TableHeadCell onClick={handleOrderBy}>Teléfono</TableHeadCell>
-            <TableHeadCell onClick={handleOrderBy}>Acciones</TableHeadCell>
+            <TableHeadCell>Nombre</TableHeadCell>
+            <TableHeadCell>Correo</TableHeadCell>
+            <TableHeadCell>Teléfono</TableHeadCell>
+            <TableHeadCell>Acciones</TableHeadCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -54,7 +61,7 @@ const StudentContainer = props => {
               <TableBodyCell>{row.phone}</TableBodyCell>
               <TableBodyCell>
                 <ButtonAction text='Modificar' onClick={handleOnClickEdit(row.id)} />
-                <ButtonAction text='Eliminar' onClick={handleDeleteStudent} />
+                <ButtonAction text='Eliminar' onClick={handleOnClickDelete(row.id)} />
               </TableBodyCell>
             </TableRow>
           ))}
@@ -66,8 +73,8 @@ const StudentContainer = props => {
 
 const mapStateToProps = state => {
   return {
-    students: state.students,
-    showForm: state.addForm.showForm
+    showForm: state.addForm.showForm,
+    students: state.student.list
   }
 }
 
