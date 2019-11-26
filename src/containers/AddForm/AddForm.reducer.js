@@ -7,10 +7,16 @@ const initialState = {
 function addFormReducer (state = initialState, action) {
   switch (action.type) {
     case SHOW_ADD_FORM: {
-      return { ...state, showForm: true }
+      return { 
+        ...state, 
+        showForm: true 
+      }
     }
     case HIDE_ADD_FORM: {
-      return { ...state, showForm: false }
+      return { 
+        ...state, 
+        showForm: false 
+      }
     }
     default: {
       return state

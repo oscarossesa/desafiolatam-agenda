@@ -2,6 +2,8 @@ export const ADD_STUDENT = 'ADD_STUDENT'
 export const EDIT_STUDENT = 'EDIT_STUDENT'
 export const DELETE_STUDENT = 'DELETE_STUDENT'
 export const SHOW_NEW_STUDENT = 'SHOW_NEW_STUDENT'
+export const SORT_STUDENT = 'SORT_STUDENT'
+export const FILTER_STUDENT = 'FILTER_STUDENT'
 
 export const onAddStudent = student => ({
   type: ADD_STUDENT,
@@ -31,3 +33,16 @@ export function onShowNewStudent (payload) {
   }
 }
 
+export function onSortStudent (payload) {
+  return {
+    type: SORT_STUDENT,
+    payload
+  }
+}
+
+export function onFilterStudent (payload) {
+  return {
+    type: FILTER_STUDENT,
+    payload
+  }
+}

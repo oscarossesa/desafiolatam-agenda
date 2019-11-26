@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import ButtonAction from '../../components/common/buttons/ButtonAction'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -10,36 +10,45 @@ import TableHeadCell from '../../components/common/table/TableHeadCell'
 import TableRow from '../../components/common/table/TableRow'
 import { onShowAddForm } from '../AddForm/AddForm.actions'
 import { onShowEditForm } from '../EditForm/EditForm.actions'
-import { onDeleteStudent, onShowNewStudent } from './Student.actions'
+import { onDeleteStudent, onShowNewStudent, onSortStudent, onFilterStudent } from './Student.actions'
 import '../../App.css'
 
 const StudentContainer = props => {
 
   const {
     students,
+    filteredStudents,
     showNewStudent
   } = props
 
-  //const [show, setShowForm] = useState('')
+  const [filter, setFilter] = useState(false)
 
   const handleOnClickNewStudent = () => {
     props.dispatch(onShowAddForm())
     props.dispatch(onShowNewStudent(false))
   }
 
-  const handleOnClickEdit = (itemID) => event => {
+  const handleOnClickEdit = itemID => event => {
     event.stopPropagation()
-
-    //setShowForm(false)
     props.dispatch(onShowEditForm({ itemID }))
     props.dispatch(onShowNewStudent(false))
   }
 
-  const handleOnClickDelete = (itemID) => (event) => {
-    console.log(props);
-    
+  const handleOnClickDelete = itemID => event => {
     props.dispatch(onDeleteStudent({ itemID }))
-  
+  }
+
+  const handleOnSort = (key) => () => {
+    props.dispatch(onSortStudent(key))
+  }
+
+  const handleOnChangeFiltrar = event => {
+    const text = event.target.value
+    props.dispatch(onFilterStudent(text))
+    if (text)
+      setFilter(true)
+    else
+      setFilter(false)
   }
 
   return (
@@ -48,27 +57,42 @@ const StudentContainer = props => {
       {showNewStudent &&
         <button type='button' onClick={handleOnClickNewStudent}>Nuevo estudiante</button>
       }
+      <input type='text' placeholder='Filtrar...' onChange={handleOnChangeFiltrar}></input>
       <Table>
         <TableHead>
           <TableRow>
-            <TableHeadCell>Nombre</TableHeadCell>
-            <TableHeadCell>Correo</TableHeadCell>
-            <TableHeadCell>Teléfono</TableHeadCell>
+            <TableHeadCell onClick={handleOnSort({ key: 'name' })}>Nombre</TableHeadCell>
+            <TableHeadCell onClick={handleOnSort({ key: 'email' })}>Correo</TableHeadCell>
+            <TableHeadCell onClick={handleOnSort({ key: 'phone' })}>Teléfono</TableHeadCell>
             <TableHeadCell>Acciones</TableHeadCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {students.map(row => (
-            <TableRow key={row.id}>
-              <TableBodyCell>{row.name}</TableBodyCell>
-              <TableBodyCell>{row.email}</TableBodyCell>
-              <TableBodyCell>{row.phone}</TableBodyCell>
-              <TableBodyCell>
-                <ButtonAction text='Modificar' onClick={handleOnClickEdit(row.id)} />
-                <ButtonAction text='Eliminar' onClick={handleOnClickDelete(row.id)} />
-              </TableBodyCell>
-            </TableRow>
-          ))}
+          { !filter &&
+            students.map(row => (
+              <TableRow key={row.id}>
+                <TableBodyCell>{row.name}</TableBodyCell>
+                <TableBodyCell>{row.email}</TableBodyCell>
+                <TableBodyCell>{row.phone}</TableBodyCell>
+                <TableBodyCell>
+                  <ButtonAction text='Modificar' onClick={handleOnClickEdit(row.id)} />
+                  <ButtonAction text='Eliminar' onClick={handleOnClickDelete(row.id)} />
+                </TableBodyCell>
+              </TableRow>
+            ))}
+          {
+            filteredStudents.map(row => (
+              <TableRow key={row.id}>
+                <TableBodyCell>{row.name}</TableBodyCell>
+                <TableBodyCell>{row.email}</TableBodyCell>
+                <TableBodyCell>{row.phone}</TableBodyCell>
+                <TableBodyCell>
+                  <ButtonAction text='Modificar' onClick={handleOnClickEdit(row.id)} />
+                  <ButtonAction text='Eliminar' onClick={handleOnClickDelete(row.id)} />
+                </TableBodyCell>
+              </TableRow>
+            ))
+          } 
         </TableBody>
       </Table>
     </>
@@ -77,9 +101,9 @@ const StudentContainer = props => {
 
 const mapStateToProps = state => {
   return {
-    //showForm: state.addForm.showForm,
     showNewStudent: state.student.showNewStudent,
-    students: state.student.list
+    students: state.student.list,
+    filteredStudents: state.student.filteredList
   }
 }
 

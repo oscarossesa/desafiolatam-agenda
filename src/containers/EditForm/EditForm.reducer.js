@@ -8,10 +8,18 @@ const initialState = {
 function editFormReducer (state = initialState, action) {
   switch (action.type) {
     case SHOW_EDIT_FORM: {
-      return { ...state, show: true, selectedItemID: action.payload.itemID }
+      return { 
+        ...state, 
+        show: true, 
+        selectedItemID: action.payload.itemID 
+      }
     }
     case HIDE_EDIT_FORM: {
-      return { ...state, show: false, selectedItemID: null }
+      return { 
+        ...state, 
+        show: false, 
+        selectedItemID: null 
+      }
     }
     default: {
       return state
