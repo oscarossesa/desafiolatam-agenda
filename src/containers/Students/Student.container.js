@@ -10,25 +10,29 @@ import TableHeadCell from '../../components/common/table/TableHeadCell'
 import TableRow from '../../components/common/table/TableRow'
 import { onShowAddForm } from '../AddForm/AddForm.actions'
 import { onShowEditForm } from '../EditForm/EditForm.actions'
-import { onDeleteStudent} from './Student.actions'
+import { onDeleteStudent, onShowNewStudent } from './Student.actions'
 import '../../App.css'
 
 const StudentContainer = props => {
 
   const {
     students,
-    showForm
+    showNewStudent
   } = props
 
-  const handleOnClick = () => {
+  //const [show, setShowForm] = useState('')
+
+  const handleOnClickNewStudent = () => {
     props.dispatch(onShowAddForm())
+    props.dispatch(onShowNewStudent(false))
   }
 
   const handleOnClickEdit = (itemID) => event => {
     event.stopPropagation()
 
+    //setShowForm(false)
     props.dispatch(onShowEditForm({ itemID }))
-    //props.dispatch()
+    props.dispatch(onShowNewStudent(false))
   }
 
   const handleOnClickDelete = (itemID) => (event) => {
@@ -41,8 +45,8 @@ const StudentContainer = props => {
   return (
     <>
       <CssBaseline />
-      {!showForm &&
-        <button type='button' onClick={handleOnClick}>Nuevo estudiante</button>
+      {showNewStudent &&
+        <button type='button' onClick={handleOnClickNewStudent}>Nuevo estudiante</button>
       }
       <Table>
         <TableHead>
@@ -73,7 +77,8 @@ const StudentContainer = props => {
 
 const mapStateToProps = state => {
   return {
-    showForm: state.addForm.showForm,
+    //showForm: state.addForm.showForm,
+    showNewStudent: state.student.showNewStudent,
     students: state.student.list
   }
 }

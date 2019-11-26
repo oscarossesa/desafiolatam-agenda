@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-// import { onHideEditForm } from './EditForm.actions'
+import { onHideEditForm } from './EditForm.actions'
 import { onEditStudent } from '../Students/Student.actions'
 
 function EditForm(props) {
@@ -10,14 +10,11 @@ function EditForm(props) {
   const [emailValue, setEmailValue] = useState('')
   const [phoneValue, setPhoneValue] = useState('')
 
-  // const handleOnClick = () => {
-  //   props.dispatch(onHideEditForm())
-  // }
-
   const handleOnSubmit = event => {
     event.preventDefault()
 
     props.dispatch(onEditStudent({ id: idValue, name: nameValue, email: emailValue, phone: phoneValue }))
+    props.dispatch(onHideEditForm())
   }
 
   const handleOnChangeName = event => {
@@ -51,7 +48,6 @@ function EditForm(props) {
 
   return (
     <div>
-      Edit Form
       <form onSubmit={handleOnSubmit}>
         <input placeholder='Nombre' type='text' value={nameValue} onChange={handleOnChangeName} />
         <input placeholder='Correo' type='text' value={emailValue} onChange={handleOnChangeEmail} />

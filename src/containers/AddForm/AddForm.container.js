@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { onAddStudent } from '../Students/Student.actions'
 import { onHideAddForm } from '../AddForm/AddForm.actions'
-import uuid from 'uuid/v1';
+import uuid from 'uuid/v1'
 
 const AddForm = (props) => {
   const [nameValue, setNameValue] = useState('')
@@ -41,7 +41,6 @@ const AddForm = (props) => {
 
   return (
     <div>
-      Add Form
       <form onSubmit={handleOnSubmit}>
         <input placeholder='Nombre' type='text' value={nameValue} onChange={handleOnChangeName} />
         <input placeholder='Correo' type='text' value={emailValue} onChange={handleOnChangeEmail} />

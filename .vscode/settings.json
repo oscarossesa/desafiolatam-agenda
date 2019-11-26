@@ -1,0 +1,13 @@
+{
+  "standard.options": {
+    "envs": ["jest"],
+    "ignore": [
+      "node_modules/**"
+    ],
+    "parser": "babel-eslint"
+  },
+  "standard.validate": [
+    "javascript",
+    "javascriptreact"
+  ],
+}
