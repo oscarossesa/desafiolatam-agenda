@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import ButtonAction from '../../components/common/buttons/ButtonAction'
-import CssBaseline from '@material-ui/core/CssBaseline'
 import Table from '../../components/common/table/Table'
 import TableBody from '../../components/common/table/TableBody'
 import TableBodyCell from '../../components/common/table/TableBodyCell'
@@ -14,7 +14,6 @@ import { onDeleteStudent, onShowNewStudent, onSortStudent, onFilterStudent } fro
 import '../../App.css'
 
 const StudentContainer = props => {
-
   const {
     students,
     filteredStudents,
@@ -45,15 +44,15 @@ const StudentContainer = props => {
   const handleOnChangeFiltrar = event => {
     const text = event.target.value
     props.dispatch(onFilterStudent(text))
-    if (text)
+    if (text) {
       setFilter(true)
-    else
+    } else {
       setFilter(false)
+    }
   }
 
   return (
     <>
-      <CssBaseline />
       {showNewStudent &&
         <button type='button' onClick={handleOnClickNewStudent}>Nuevo estudiante</button>
       }
@@ -92,7 +91,7 @@ const StudentContainer = props => {
                 </TableBodyCell>
               </TableRow>
             ))
-          } 
+          }
         </TableBody>
       </Table>
     </>
@@ -113,4 +112,11 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(StudentContainer);
+StudentContainer.propTypes = {
+  students: PropTypes.array.isRequired,
+  filteredStudents: PropTypes.array.isRequired,
+  showNewStudent: PropTypes.bool.isRequired,
+  dispatch: PropTypes.func.isRequired
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(StudentContainer)

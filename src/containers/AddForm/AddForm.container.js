@@ -9,9 +9,7 @@ const AddForm = (props) => {
   const [nameValue, setNameValue] = useState('')
   const [emailValue, setEmailValue] = useState('')
   const [phoneValue, setPhoneValue] = useState('')
-  const [errors, setErrors] = useState('')
-
-  setErrors('Campo obligatorio')
+  const [errors, setErrors] = useState('Campo obligatorio')
 
   const handleOnChangeName = event => {
     setNameValue(event.target.value)
@@ -65,7 +63,7 @@ function mapStateToProps (state) {
 }
 
 AddForm.propTypes = {
-  showForm: PropTypes.func.isRequired,
+  showForm: PropTypes.bool.isRequired,
   dispatch: PropTypes.func.isRequired
 }
 
