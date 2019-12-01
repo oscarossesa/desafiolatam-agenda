@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { onHideEditForm } from './EditForm.actions'
-import { onEditStudent } from '../Students/Student.actions'
+import { onHideEditForm } from './EditForm.actions';
+import { onEditStudent } from '../Students/Student.actions';
 
 function EditForm(props) {
 
