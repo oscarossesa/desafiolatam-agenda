@@ -1,16 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Table = props => {
+const TableOne = props => {
   return (
     <table>
       {props.children}
     </table>
-  );
-};
+  )
+}
 
-Table.propTypes = {
+TableOne.propTypes = {
   children: PropTypes.node
 }
 
-export default Table
+export default TableOne
