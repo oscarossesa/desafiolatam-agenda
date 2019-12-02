@@ -1,5 +1,5 @@
 import React from 'react'
-import ButtonAction from '../common/buttons/ButtonAction'
+// import ButtonAction from '../common/buttons/ButtonAction'
 import Table from '../common/table/Table'
 import TableBody from '../common/table/TableBody'
 import TableBodyCell from '../common/table/TableBodyCell'
@@ -39,8 +39,8 @@ const StudentsTable = (props) => {
               <TableBodyCell>{row.email}</TableBodyCell>
               <TableBodyCell>{row.phone}</TableBodyCell>
               <TableBodyCell>
-                <ButtonAction text='Modificar' onClick={handleEditStudent} />
-                <ButtonAction text='Eliminar' onClick={handleDeleteStudent} />
+                {/* <ButtonAction text='Modificar' onClick={handleEditStudent} />
+                <ButtonAction text='Eliminar' onClick={handleDeleteStudent} /> */}
               </TableBodyCell>
             </TableRow>
           ))}
