@@ -26,13 +26,13 @@ export default function ButtonAppBar () {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <Typography variant="h6" className={classes.title}>
-            Agenda Escolar 2020
+            Proyecto 2 - Desafiolatam
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit">Ingresar</Button>
         </Toolbar>
       </AppBar>
     </div>

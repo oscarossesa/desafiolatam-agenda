@@ -10,6 +10,7 @@ import PrivatePage from './views/PrivatePage'
 import PrivateRouteContainer from './containers/PrivateRoute/PrivateRoute.container'
 import LoginPage from './views/LoginPage'
 import EpisodePage from './views/EpisodePage'
+import CharacterPage from './views/CharacterPage'
 
 ReactDOM.render(
   <Provider store={store}>
@@ -20,7 +21,9 @@ ReactDOM.render(
         <Route exact path='/public' component={PublicPage} />
         <PrivateRouteContainer exact path='/private' component={PrivatePage} />
         <Route exact path='/episode' component={EpisodePage} />
-        <Route path='*' render={() => <div>403</div> } />
+        <Route exact path='/character' component={CharacterPage} />
+        <Route exact path='/403' render={() => <div>403</div> } />
+        <Route path='*' render={() => <div>404</div> } />
       </Switch>
     </BrowserRouter>
   </Provider>,

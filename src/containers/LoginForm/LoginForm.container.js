@@ -1,27 +1,18 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { onLogin } from './LoginForm.actions'
-import { Redirect } from 'react-router-dom'
 
 const LoginForm = () => {
-  const { isLoggedIn } = useSelector(state => {
-    const { loggedIn } = state.loggedIn
-
-    return { isLoggedIn: Boolean(loggedIn) }
-  })
   const dispatch = useDispatch()
   const [emailValue, setEmailValue] = useState('')
   const [passwordValue, setPasswordValue] = useState('')
   const handleOnChangeEmail = event => setEmailValue(event.target.value)
   const handleOnChangePassword = event => setPasswordValue(event.target.value)
+
   const handleOnSubmit = event => {
     event.preventDefault()
 
     dispatch(onLogin({ email: emailValue, password: passwordValue }))
-  }
-
-  if (isLoggedIn) {
-    return <Redirect to='/private' />
   }
 
   return (

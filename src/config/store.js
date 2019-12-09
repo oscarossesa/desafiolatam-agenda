@@ -6,6 +6,7 @@ import privateRouteReducer from '../containers/PrivateRoute/PrivateRoute.reducer
 import loginFormReducer from '../containers/LoginForm/LoginForm.reducer'
 import thunk from 'redux-thunk'
 import episodeReducer from '../containers/Episode/Episode.reducer'
+import characterReducer from '../containers/Character/Character.reducer'
 
 const reducer = combineReducers({
   student: studentReducer,
@@ -13,7 +14,8 @@ const reducer = combineReducers({
   editForm: editFormReducer,
   loggedIn: privateRouteReducer,
   loginForm: loginFormReducer,
-  episode: episodeReducer
+  episode: episodeReducer,
+  character: characterReducer
 })
 
 const store = createStore(
