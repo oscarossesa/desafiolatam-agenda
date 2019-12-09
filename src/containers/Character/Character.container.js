@@ -17,6 +17,11 @@ const CharacterContainer = () => {
   }, [])
 
   const useStyles = makeStyles(theme => ({
+    grid: {
+      marginLeft: '20px',
+      marginRight: '100px',
+      marginTop: '20px'
+    },
     card: {
       maxWidth: 200,
       minWidth: 200,
@@ -32,7 +37,7 @@ const CharacterContainer = () => {
 
   return (
     <>
-      <Grid container spacing={16}>
+      <Grid container spacing={10} className={classes.grid}>
         {characters.map((character, index) => (
           <Card key={character.id} className={classes.card}>
             <CardMedia

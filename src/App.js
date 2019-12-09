@@ -1,29 +1,34 @@
 import React from 'react'
-import './App.css'
-import StudentContainer from './containers/Students/Student.container'
-import AddFormContainer from './containers/AddForm/AddForm.container'
-import EditFormContainer from './containers/EditForm/EditForm.container'
-import ButtonAppBar from './components/NavBar/ButtonAppBar'
+import { Provider } from 'react-redux'
+import store from './config/store'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import PublicPage from './views/PublicPage'
+import PrivatePage from './views/PrivatePage'
+import PrivateRouteContainer from './containers/PrivateRoute/PrivateRoute.container'
 import LoginPage from './views/LoginPage'
-import {
-  Container,
-  CssBaseline,
-  Typography
-} from '@material-ui/core'
+import EpisodePage from './views/EpisodePage'
+import CharacterPage from './views/CharacterPage'
+import ButtonAppBar from './components/NavBar/ButtonAppBar'
+import { CssBaseline } from '@material-ui/core'
 
 const App = () => {
   return (
-    <>
-      <ButtonAppBar />
-      <Container>
-        <CssBaseline />
-        <Typography variant="h6">Bienvenido a Proyecto 2 de Desafiolatam</Typography>
-        <LoginPage />
-        {/* <AddFormContainer />
-        <EditFormContainer />
-        <StudentContainer /> */}
-      </Container>
-    </>
+    <Provider store={store}>
+      <CssBaseline />
+      <Router>
+        <ButtonAppBar />
+        <Switch>
+          <Route exact path='/' component={LoginPage} />
+          <Route exact path='/login' component={LoginPage} />
+          <Route exact path='/public' component={PublicPage} />
+          <PrivateRouteContainer exact path='/private' component={PrivatePage} />
+          <Route exact path='/episode' component={EpisodePage} />
+          <Route exact path='/character' component={CharacterPage} />
+          <Route exact path='/403' render={() => <div>403</div>} />
+          <Route path='*' render={() => <div>404</div>} />
+        </Switch>
+      </Router>
+    </Provider>
   )
 }
 

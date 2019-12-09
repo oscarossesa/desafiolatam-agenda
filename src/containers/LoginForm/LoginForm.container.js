@@ -1,8 +1,16 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { onLogin } from './LoginForm.actions'
+import { Grid, FormControl, InputLabel, Input, Button, Paper, Typography, makeStyles } from '@material-ui/core'
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    padding: theme.spacing(3, 4)
+  }
+}))
 
 const LoginForm = () => {
+  const classes = useStyles()
   const dispatch = useDispatch()
   const [emailValue, setEmailValue] = useState('')
   const [passwordValue, setPasswordValue] = useState('')
@@ -16,11 +24,30 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={handleOnSubmit}>
-      <input type='email' value={emailValue} onChange={handleOnChangeEmail} />
-      <input type='password' value={passwordValue} onChange={handleOnChangePassword} />
-      <button type='submit'>Login</button>
-    </form>
+    <Grid container justify='center'>
+      <Grid item xs={6}>
+        <Paper className={classes.root}>
+          <Typography variant="h5" component="h3">
+            Ingreso de usuarios
+          </Typography>
+          <form onSubmit={handleOnSubmit}>
+            <FormControl>
+              <InputLabel htmlFor="my-input-email">Correo</InputLabel>
+              <Input id="my-input-email" value={emailValue} onChange={handleOnChangeEmail} />
+            </FormControl>
+            <br />
+            <FormControl>
+              <InputLabel htmlFor="my-input-password">Contraseña</InputLabel>
+              <Input id="my-input-password" value={passwordValue} onChange={handleOnChangePassword} />
+            </FormControl>
+            <br />
+            <br />
+            <br />
+            <Button type='submit' variant='contained' color='primary'>Login</Button>
+          </form>
+        </Paper>
+      </Grid>
+    </Grid>
   )
 }
 
