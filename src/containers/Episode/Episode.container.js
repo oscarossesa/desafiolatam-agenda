@@ -1,12 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getEpisodes } from './Episode.actions'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableHead from '@material-ui/core/TableHead'
-import TableRow from '@material-ui/core/TableRow'
-import Paper from '@material-ui/core/Paper'
+import { getEpisodes, addFavoriteEpisode } from './Episode.actions'
+import { Table, TableBody, TableCell, TableHead, TableRow, Paper } from '@material-ui/core'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 import { makeStyles } from '@material-ui/core/styles'
@@ -14,10 +9,13 @@ import { makeStyles } from '@material-ui/core/styles'
 const EpisodeContainer = () => {
   const dispatch = useDispatch()
 
-  const { episodes } = useSelector(state =>
+  const { episodes, favoriteEpisodes } = useSelector(state =>
     ({
-      episodes: state.episode.episodes
+      episodes: state.episode.episodes,
+      favoriteEpisodes: state.loggedIn.favoriteEpisodes
     }))
+
+  console.log('favoriteEpisodes', favoriteEpisodes)
 
   useEffect(() => {
     dispatch(getEpisodes())
@@ -34,6 +32,11 @@ const EpisodeContainer = () => {
   })
 
   const classes = useStyles()
+
+  const handleOnAddFavorite = id => event => {
+    console.log('handleOnAddFavorite', id)
+    dispatch(addFavoriteEpisode(id))
+  }
 
   return (
     <>
@@ -55,7 +58,9 @@ const EpisodeContainer = () => {
                   <TableCell component="th" scope="row">{row.name}</TableCell>
                   <TableCell component="th" scope="row">{row.episode}</TableCell>
                   <TableCell align="center">
-                    <FavoriteIcon />
+                    <FavoriteIcon
+                      onClick={handleOnAddFavorite(row.id)}
+                    />
                     <FavoriteBorderIcon />
                   </TableCell>
                 </TableRow>

@@ -1,4 +1,4 @@
-import { LOAD_EPISODES_SUCCESS } from './Episode.actions'
+import { LOAD_EPISODES_SUCCESS, ADD_FAVORITE_EPISODE } from './Episode.actions'
 
 const initialState = {
   loading: false,
@@ -7,7 +7,7 @@ const initialState = {
   episodes: []
 }
 
-function episodeReducer (state = initialState, action) {
+function episodeReducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_EPISODES_SUCCESS:
       return {
@@ -16,6 +16,11 @@ function episodeReducer (state = initialState, action) {
         episodes: state.episodes.concat(action.payload.results),
         loading: false,
         error: false
+      }
+    case ADD_FAVORITE_EPISODE:
+      return {
+        ...state,
+        isFavoriteEpisode: action.payload
       }
     default: {
       return state
