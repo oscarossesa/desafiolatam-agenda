@@ -2,6 +2,7 @@
   "name": "agenda-ecmascript",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://oscarossesa.github.io/desafiolatam-agenda",  
   "dependencies": {
     "@material-ui/core": "^4.7.1",
     "@material-ui/icons": "^4.5.1",
@@ -19,7 +20,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -45,6 +48,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-standard": "^4.0.1",
+    "gh-pages": "^2.1.1",
     "react-test-renderer": "^16.12.0",
     "redux-devtools": "^3.5.0",
     "standard": "^14.3.1"
