@@ -15,7 +15,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <CssBaseline />
-      <Router>
+      <Router basename='/desafiolatam-agenda'>
         <ButtonAppBar />
         <Switch>
           <Route exact path='/' component={LoginPage} />
