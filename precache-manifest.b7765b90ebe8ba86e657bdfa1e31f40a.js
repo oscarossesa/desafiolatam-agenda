@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "11e674ed21729edc7f2991036ae295a4",
+    "revision": "8293e773315f1895a224e99877417008",
     "url": "/desafiolatam-agenda/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/desafiolatam-agenda/static/js/2.48a7a3bc.chunk.js"
   },
   {
-    "revision": "1ea423415ec34ed26d4a",
-    "url": "/desafiolatam-agenda/static/js/main.0bc410cd.chunk.js"
+    "revision": "5f021e4373cb6d1f1269",
+    "url": "/desafiolatam-agenda/static/js/main.a565b2b5.chunk.js"
   },
   {
     "revision": "02b97cd611e1b5e7fe1f",
