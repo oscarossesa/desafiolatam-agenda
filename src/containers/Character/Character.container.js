@@ -14,6 +14,7 @@ const CharacterContainer = () => {
 
   useEffect(() => {
     dispatch(getCharacters())
+    // eslint-disable-next-line
   }, [])
 
   const useStyles = makeStyles(theme => ({

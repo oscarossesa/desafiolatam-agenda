@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getEpisodes, addFavoriteEpisode } from './Episode.actions'
+import { getEpisodes, addFavoriteEpisode, removeFavoriteEpisode } from './Episode.actions'
 import { Table, TableBody, TableCell, TableHead, TableRow, Paper } from '@material-ui/core'
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
+import Favorite from '../../components/Favorite/Favorite'
 import { makeStyles } from '@material-ui/core/styles'
 
 const EpisodeContainer = () => {
@@ -12,13 +11,14 @@ const EpisodeContainer = () => {
   const { episodes, favoriteEpisodes } = useSelector(state =>
     ({
       episodes: state.episode.episodes,
-      favoriteEpisodes: state.loggedIn.favoriteEpisodes
+      favoriteEpisodes: state.loggedIn.loggedIn.favoriteEpisodes
     }))
 
   console.log('favoriteEpisodes', favoriteEpisodes)
 
   useEffect(() => {
-    dispatch(getEpisodes())
+    if (episodes.length === 0) dispatch(getEpisodes())
+    // eslint-disable-next-line
   }, [])
 
   const useStyles = makeStyles({
@@ -34,42 +34,45 @@ const EpisodeContainer = () => {
   const classes = useStyles()
 
   const handleOnAddFavorite = id => event => {
-    console.log('handleOnAddFavorite', id)
+    console.log(id)
     dispatch(addFavoriteEpisode(id))
+  }
+
+  const handleOnRemoveFavorite = id => event => {
+    console.log(id)
+    dispatch(removeFavoriteEpisode(id))
   }
 
   return (
     <>
-      {
-        <Paper className={classes.root}>
-          <Table className={classes.table} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell align="left">#</TableCell>
-                <TableCell align="left">Nombre</TableCell>
-                <TableCell align="left">Episodio</TableCell>
-                <TableCell align="center">Favorito</TableCell>
+      {<Paper className={classes.root}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="left">#</TableCell>
+              <TableCell align="left">Nombre</TableCell>
+              <TableCell align="left">Episodio</TableCell>
+              <TableCell align="center">Favorito</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {episodes.map((row, index) => (
+              <TableRow key={index + '-' + row.name}>
+                <TableCell component="th" scope="row">{row.id}</TableCell>
+                <TableCell component="th" scope="row">{row.name}</TableCell>
+                <TableCell component="th" scope="row">{row.episode}</TableCell>
+                <TableCell align="center">
+                  <Favorite
+                    isFavorite={favoriteEpisodes.some(id => id === row.id)}
+                    onAddFavorite={handleOnAddFavorite(row.id)}
+                    onRemoveFavorite={handleOnRemoveFavorite(row.id)}
+                  />
+                </TableCell>
               </TableRow>
-            </TableHead>
-            <TableBody>
-              {episodes.map(row => (
-                <TableRow key={row.name}>
-                  <TableCell component="th" scope="row">{row.id}</TableCell>
-                  <TableCell component="th" scope="row">{row.name}</TableCell>
-                  <TableCell component="th" scope="row">{row.episode}</TableCell>
-                  <TableCell align="center">
-                    <FavoriteIcon
-                      onClick={handleOnAddFavorite(row.id)}
-                    />
-                    <FavoriteBorderIcon />
-                  </TableCell>
-                </TableRow>
-              ))
-              }
-            </TableBody>
-          </Table>
-        </Paper>
-      }
+            )) }
+          </TableBody>
+        </Table>
+      </Paper>}
     </>
   )
 }

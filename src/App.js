@@ -22,8 +22,8 @@ const App = () => {
           <Route exact path='/login' component={LoginPage} />
           <Route exact path='/public' component={PublicPage} />
           <PrivateRouteContainer exact path='/private' component={PrivatePage} />
-          <Route exact path='/episode' component={EpisodePage} />
-          <Route exact path='/character' component={CharacterPage} />
+          <PrivateRouteContainer exact path='/episode' component={EpisodePage} />
+          <PrivateRouteContainer exact path='/character' component={CharacterPage} />
           <Route exact path='/403' render={() => <div>403</div>} />
           <Route path='*' render={() => <div>404</div>} />
         </Switch>

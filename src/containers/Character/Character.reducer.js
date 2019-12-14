@@ -5,7 +5,7 @@ const initialState = {
 }
 
 function characterReducer (state = initialState, action) {
-  console.log('characterReducer', action)
+  // console.log('characterReducer', action)
 
   switch (action.type) {
     case LOAD_CHARACTERS_SUCCESS: {
