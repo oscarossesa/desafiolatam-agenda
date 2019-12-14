@@ -34,8 +34,6 @@ function loginFormReducer (state = initialState, action) {
       }
     }
     case ADD_FAVORITE_CHARACTER: {
-      console.log('LoginForm.reducer.js --> action', action)
-      console.log('LoginForm.reducer.js --> state', state)
       const user = state.users.find(user => user.id === action.payload.userId)
       user.favoriteCharacters = user.favoriteCharacters.concat([action.payload.characterId])
 
@@ -47,6 +45,7 @@ function loginFormReducer (state = initialState, action) {
     case REMOVE_FAVORITE_EPISODE: {
       const user = state.users.find(user => user.id === action.payload.userId)
       user.favoriteEpisodes = user.favoriteEpisodes.filter(episodeId => episodeId !== action.payload.episodeId)
+
       return {
         ...state,
         users: state.users.filter(user => user.id !== action.payload.userId).concat(user)
@@ -55,6 +54,7 @@ function loginFormReducer (state = initialState, action) {
     case REMOVE_FAVORITE_CHARACTER: {
       const user = state.users.find(user => user.id === action.payload.userId)
       user.favoriteCharacters = user.favoriteCharacters.filter(characterId => characterId !== action.payload.characterId)
+
       return {
         ...state,
         users: state.users.filter(user => user.id !== action.payload.userId).concat(user)

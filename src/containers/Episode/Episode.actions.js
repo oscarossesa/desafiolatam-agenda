@@ -20,7 +20,6 @@ const loadEpisodesSuccess = payload => ({
 })
 
 export const addFavoriteEpisode = id => (dispatch, getState) => {
-  console.log('Episode.action.js', id)
   const state = getState()
   const user = state.loggedIn
   dispatch(createAction(ADD_FAVORITE_EPISODE, { userId: user.id, episodeId: id }))

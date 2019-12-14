@@ -23,7 +23,6 @@ const CharacterContainer = () => {
   }
 
   const handeOnRemoveFavorite = id => event => {
-    console.log('Character.container.js|handeOnRemoveFavorite|id', id)
     dispatch(removeFavoriteCharacter(id))
   }
 

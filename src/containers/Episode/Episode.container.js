@@ -34,12 +34,10 @@ const EpisodeContainer = () => {
   const classes = useStyles()
 
   const handleOnAddFavorite = id => event => {
-    console.log(id)
     dispatch(addFavoriteEpisode(id))
   }
 
   const handleOnRemoveFavorite = id => event => {
-    console.log(id)
     dispatch(removeFavoriteEpisode(id))
   }
 

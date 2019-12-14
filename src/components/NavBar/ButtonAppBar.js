@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { makeStyles, AppBar, Toolbar, Typography } from '@material-ui/core'
 
@@ -17,7 +18,9 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const ButtonAppBar = () => {
+const ButtonAppBar = (props) => {
+  const { isLoggedIn } = useSelector(state => ({ isLoggedIn: Boolean(state.loggedIn.loggedIn) }))
+
   const classes = useStyles()
 
   return (
@@ -27,8 +30,18 @@ const ButtonAppBar = () => {
           <Link to='/' className={classes.link}>Proyecto 2 - Desafiolatam</Link>
         </Typography>
         <Typography variant='h6'>
-          <Link to='/episode' color='inherit' className={classes.link}>EPISODIOS</Link>
-          <Link to='/character' color='inherit' className={classes.link}>PERSONAJES</Link>
+          {isLoggedIn && (
+            <>
+              <Link to='/episode' color='inherit' className={classes.link}>EPISODIOS</Link>
+              <Link to='/character' color='inherit' className={classes.link}>PERSONAJES</Link>
+              <Link to='/logout' color='inherit' className={classes.link}>CERRAR SESIÓN</Link>
+            </>
+          )}
+          {!isLoggedIn && (
+            <>
+              <Link to='/episode' color='inherit' className={classes.link}>INICIAR SESIÓN</Link>
+            </>
+          )}
         </Typography>
       </Toolbar>
     </AppBar>
