@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const ButtonAppBar = (props) => {
-  const { isLoggedIn } = useSelector(state => ({ isLoggedIn: Boolean(state.loggedIn.loggedIn) }))
+  const { isLoggedIn } = useSelector(state => ({ isLoggedIn: Boolean(state.privateRoute.loggedIn) }))
 
   const classes = useStyles()
 

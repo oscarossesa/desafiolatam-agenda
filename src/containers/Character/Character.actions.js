@@ -20,7 +20,7 @@ export const loadCharactersSuccess = payload => ({
 
 export const addFavoriteCharacter = id => (dispatch, getState) => {
   const state = getState()
-  const user = state.loggedIn.loggedIn
+  const user = state.privateRoute.loggedIn
 
   dispatch(createAction(ADD_FAVORITE_CHARACTER, { userId: user.id, characterId: id }))
   // return {
@@ -31,7 +31,7 @@ export const addFavoriteCharacter = id => (dispatch, getState) => {
 
 export const removeFavoriteCharacter = id => (dispatch, getState) => {
   const state = getState()
-  const user = state.loggedIn.loggedIn
+  const user = state.privateRoute.loggedIn
 
   dispatch(createAction(REMOVE_FAVORITE_CHARACTER, { userId: user.id, characterId: id }))
 }

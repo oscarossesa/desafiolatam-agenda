@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 const PrivateRoute = (props) => {
   const { isLoggedIn } = useSelector(state => {
-    const { loggedIn } = state.loggedIn
+    const { loggedIn } = state.privateRoute
 
     return { isLoggedIn: Boolean(loggedIn) }
   })

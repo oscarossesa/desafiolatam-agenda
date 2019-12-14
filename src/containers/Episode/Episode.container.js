@@ -10,7 +10,7 @@ const EpisodeContainer = () => {
   const { episodes, favoriteEpisodes } = useSelector(state =>
     ({
       episodes: state.episode.episodes,
-      favoriteEpisodes: state.loggedIn.loggedIn.favoriteEpisodes
+      favoriteEpisodes: state.privateRoute.loggedIn.favoriteEpisodes
     }))
 
   useEffect(() => {

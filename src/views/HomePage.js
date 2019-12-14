@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
 
 const HomePage = () => {
   const classes = useStyles()
-  const { loggedIn } = useSelector(state => ({ loggedIn: state.loggedIn.loggedIn }))
+  const { loggedIn } = useSelector(state => ({ loggedIn: state.privateRoute.loggedIn }))
 
   return (
     <Container fixed>

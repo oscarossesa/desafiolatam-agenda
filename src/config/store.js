@@ -6,7 +6,7 @@ import episodeReducer from '../containers/Episode/Episode.reducer'
 import characterReducer from '../containers/Character/Character.reducer'
 
 const reducer = combineReducers({
-  loggedIn: privateRouteReducer,
+  privateRoute: privateRouteReducer,
   loginForm: loginFormReducer,
   episode: episodeReducer,
   character: characterReducer

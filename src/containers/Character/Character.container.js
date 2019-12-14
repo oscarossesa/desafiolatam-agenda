@@ -10,7 +10,7 @@ const CharacterContainer = () => {
   const { characters, favoriteCharacters } = useSelector(state =>
     ({
       characters: state.character.characters,
-      favoriteCharacters: state.loggedIn.loggedIn.favoriteCharacters
+      favoriteCharacters: state.privateRoute.loggedIn.favoriteCharacters
     }))
 
   useEffect(() => {

@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 
 const CheckSession = props => {
   const { isLoggedIn } = useSelector(state => {
-    const { loggedIn } = state.loggedIn
+    const { loggedIn } = state.privateRoute
 
     return { isLoggedIn: Boolean(loggedIn) }
   })
