@@ -63,7 +63,7 @@ const EpisodeContainer = () => {
                 <TableCell component="th" scope="row">{row.episode}</TableCell>
                 <TableCell align="center">
                   <Favorite
-                    isFavorite={favoriteEpisodes.some(id => id === row.id)}
+                    isFavorite={favoriteEpisodes.some(x => x === row.id)}
                     onAddFavorite={handleOnAddFavorite(row.id)}
                     onRemoveFavorite={handleOnRemoveFavorite(row.id)}
                   />

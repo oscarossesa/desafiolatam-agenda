@@ -1,21 +1,31 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCharacters } from './Character.actions'
-import { Grid, Card, CardMedia, CardContent, CardActions, IconButton, Typography, makeStyles } from '@material-ui/core'
-import FavoriteIcon from '@material-ui/icons/Favorite'
+import { getCharacters, addFavoriteCharacter, removeFavoriteCharacter } from './Character.actions'
+import { Grid, Card, CardMedia, CardContent, CardActions, Typography, makeStyles } from '@material-ui/core'
+import Favorite from '../../components/Favorite/Favorite'
 
 const CharacterContainer = () => {
   const dispatch = useDispatch()
 
-  const { characters } = useSelector(state =>
+  const { characters, favoriteCharacters } = useSelector(state =>
     ({
-      characters: state.character.characters
+      characters: state.character.characters,
+      favoriteCharacters: state.loggedIn.loggedIn.favoriteCharacters
     }))
 
   useEffect(() => {
     dispatch(getCharacters())
     // eslint-disable-next-line
   }, [])
+
+  const handleOnAddFavorite = (id) => event => {
+    dispatch(addFavoriteCharacter(id))
+  }
+
+  const handeOnRemoveFavorite = id => event => {
+    console.log('Character.container.js|handeOnRemoveFavorite|id', id)
+    dispatch(removeFavoriteCharacter(id))
+  }
 
   const useStyles = makeStyles(theme => ({
     grid: {
@@ -50,9 +60,11 @@ const CharacterContainer = () => {
               <Typography component='p' variant='h6'>{character.name}</Typography>
             </CardContent>
             <CardActions>
-              <IconButton aria-label="add to favorites">
-                <FavoriteIcon />
-              </IconButton>
+              <Favorite
+                isFavorite={favoriteCharacters.some(x => x === character.id)}
+                onAddFavorite={handleOnAddFavorite(character.id)}
+                onRemoveFavorite={handeOnRemoveFavorite(character.id)}
+              />
             </CardActions>
           </Card>
         ))}
