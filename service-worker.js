@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/desafiolatam-agenda/precache-manifest.b11f94c1596ca1b3c94632a16e164486.js"
+  "/desafiolatam-agenda/precache-manifest.82b82b72f6670c9efda8dcfd41df5e7a.js"
 );
 
 self.addEventListener('message', (event) => {

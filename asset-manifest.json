@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.js": "/desafiolatam-agenda/static/js/main.16ca822c.chunk.js",
-    "main.js.map": "/desafiolatam-agenda/static/js/main.16ca822c.chunk.js.map",
+    "main.js": "/desafiolatam-agenda/static/js/main.e3e7ef68.chunk.js",
+    "main.js.map": "/desafiolatam-agenda/static/js/main.e3e7ef68.chunk.js.map",
     "runtime-main.js": "/desafiolatam-agenda/static/js/runtime-main.73586144.js",
     "runtime-main.js.map": "/desafiolatam-agenda/static/js/runtime-main.73586144.js.map",
-    "static/js/2.b58ff180.chunk.js": "/desafiolatam-agenda/static/js/2.b58ff180.chunk.js",
-    "static/js/2.b58ff180.chunk.js.map": "/desafiolatam-agenda/static/js/2.b58ff180.chunk.js.map",
+    "static/js/2.22297e19.chunk.js": "/desafiolatam-agenda/static/js/2.22297e19.chunk.js",
+    "static/js/2.22297e19.chunk.js.map": "/desafiolatam-agenda/static/js/2.22297e19.chunk.js.map",
     "index.html": "/desafiolatam-agenda/index.html",
-    "precache-manifest.b11f94c1596ca1b3c94632a16e164486.js": "/desafiolatam-agenda/precache-manifest.b11f94c1596ca1b3c94632a16e164486.js",
+    "precache-manifest.82b82b72f6670c9efda8dcfd41df5e7a.js": "/desafiolatam-agenda/precache-manifest.82b82b72f6670c9efda8dcfd41df5e7a.js",
     "service-worker.js": "/desafiolatam-agenda/service-worker.js"
   },
   "entrypoints": [
     "static/js/runtime-main.73586144.js",
-    "static/js/2.b58ff180.chunk.js",
-    "static/js/main.16ca822c.chunk.js"
+    "static/js/2.22297e19.chunk.js",
+    "static/js/main.e3e7ef68.chunk.js"
   ]
 }
