@@ -7,7 +7,10 @@ const initialState = {
 function privateRouteReducer (state = initialState, action) {
   switch (action.type) {
     case LOGIN_SUCCESS: {
-      return { ...state, loggedIn: action.payload.user }
+      return {
+        ...state,
+        loggedIn: action.payload.user
+      }
     }
     default: {
       return state

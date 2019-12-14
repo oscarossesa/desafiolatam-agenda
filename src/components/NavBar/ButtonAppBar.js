@@ -39,7 +39,7 @@ const ButtonAppBar = (props) => {
           )}
           {!isLoggedIn && (
             <>
-              <Link to='/episode' color='inherit' className={classes.link}>INICIAR SESIÓN</Link>
+              <Link to='/login' color='inherit' className={classes.link}>INICIAR SESIÓN</Link>
             </>
           )}
         </Typography>

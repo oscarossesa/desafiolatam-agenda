@@ -10,7 +10,7 @@ const CheckSession = props => {
   })
 
   if (isLoggedIn) {
-    return <Redirect to='/private' />
+    return <Redirect to='/' />
   }
 
   return props.children
