@@ -21,13 +21,13 @@ const loadEpisodesSuccess = payload => ({
 
 export const addFavoriteEpisode = id => (dispatch, getState) => {
   const state = getState()
-  const user = state.loggedIn
+  const user = state.loggedIn.loggedIn
   dispatch(createAction(ADD_FAVORITE_EPISODE, { userId: user.id, episodeId: id }))
 }
 
 export const removeFavoriteEpisode = id => (dispatch, getState) => {
   const state = getState()
-  const user = state.loggedIn
+  const user = state.loggedIn.loggedIn
   dispatch(createAction(REMOVE_FAVORITE_EPISODE, { userId: user.id, episodeId: id }))
 }
 

@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getEpisodes, addFavoriteEpisode, removeFavoriteEpisode } from './Episode.actions'
-import { Table, TableBody, TableCell, TableHead, TableRow, Paper } from '@material-ui/core'
+import { Table, TableBody, TableCell, TableHead, TableRow, Paper, makeStyles } from '@material-ui/core'
 import Favorite from '../../components/Favorite/Favorite'
-import { makeStyles } from '@material-ui/core/styles'
 
 const EpisodeContainer = () => {
   const dispatch = useDispatch()
@@ -14,12 +13,18 @@ const EpisodeContainer = () => {
       favoriteEpisodes: state.loggedIn.loggedIn.favoriteEpisodes
     }))
 
-  console.log('favoriteEpisodes', favoriteEpisodes)
-
   useEffect(() => {
     if (episodes.length === 0) dispatch(getEpisodes())
     // eslint-disable-next-line
   }, [])
+
+  const handleOnAddFavorite = id => event => {
+    dispatch(addFavoriteEpisode(id))
+  }
+
+  const handleOnRemoveFavorite = id => event => {
+    dispatch(removeFavoriteEpisode(id))
+  }
 
   const useStyles = makeStyles({
     root: {
@@ -32,14 +37,6 @@ const EpisodeContainer = () => {
   })
 
   const classes = useStyles()
-
-  const handleOnAddFavorite = id => event => {
-    dispatch(addFavoriteEpisode(id))
-  }
-
-  const handleOnRemoveFavorite = id => event => {
-    dispatch(removeFavoriteEpisode(id))
-  }
 
   return (
     <>
@@ -54,16 +51,16 @@ const EpisodeContainer = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {episodes.map((row, index) => (
-              <TableRow key={index + '-' + row.name}>
-                <TableCell component="th" scope="row">{row.id}</TableCell>
-                <TableCell component="th" scope="row">{row.name}</TableCell>
-                <TableCell component="th" scope="row">{row.episode}</TableCell>
+            {episodes.map((episode, index) => (
+              <TableRow key={episode.id}>
+                <TableCell component="th" scope="row">{episode.id}</TableCell>
+                <TableCell component="th" scope="row">{episode.name}</TableCell>
+                <TableCell component="th" scope="row">{episode.episode}</TableCell>
                 <TableCell align="center">
                   <Favorite
-                    isFavorite={favoriteEpisodes.some(x => x === row.id)}
-                    onAddFavorite={handleOnAddFavorite(row.id)}
-                    onRemoveFavorite={handleOnRemoveFavorite(row.id)}
+                    isFavorite={favoriteEpisodes.some(x => x === episode.id)}
+                    onAddFavorite={handleOnAddFavorite(episode.id)}
+                    onRemoveFavorite={handleOnRemoveFavorite(episode.id)}
                   />
                 </TableCell>
               </TableRow>

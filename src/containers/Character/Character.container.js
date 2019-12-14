@@ -14,7 +14,7 @@ const CharacterContainer = () => {
     }))
 
   useEffect(() => {
-    dispatch(getCharacters())
+    if (characters.length === 0) dispatch(getCharacters())
     // eslint-disable-next-line
   }, [])
 

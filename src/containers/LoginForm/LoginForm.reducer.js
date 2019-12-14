@@ -17,7 +17,7 @@ const initialState = {
       email: 'orlando.marin@chilecompra.cl',
       password: 'orlando123',
       favoriteEpisodes: [5, 6, 3],
-      favoriteCharacters: [11, 12, 23]
+      favoriteCharacters: [1, 3, 5]
     }
   ]
 }
